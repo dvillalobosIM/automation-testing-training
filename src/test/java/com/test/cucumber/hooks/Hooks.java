@@ -2,6 +2,8 @@ package com.test.cucumber.hooks;
 
 import com.test.cucumber.driver.DriverManager;
 import cucumber.api.Scenario;
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
@@ -12,7 +14,16 @@ public class Hooks {
         this.driverManager = driverManager;
     }
 
-    //ADD HOOKS
+    @Before
+    public void beforeScenario() {
+        driverManager.initializeDriver();
+    }
+
+    @After
+    public void AfterScenario(Scenario scenario) {
+        takeScreenshot(scenario);
+        teardownDriver();
+    }
 
     private void takeScreenshot(Scenario scenario) {
         if (driverManager.getWebDriver() != null) {

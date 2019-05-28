@@ -1,5 +1,6 @@
 package com.test.cucumber.driver;
 
+import com.test.google.pages.GooglePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -8,6 +9,7 @@ import java.util.concurrent.TimeUnit;
 
 public class DriverManager {
     private static WebDriver driver;
+    public GooglePage googlePage;
 
     public void initializeDriver() {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver");
@@ -32,7 +34,7 @@ public class DriverManager {
 
     private void initializePages() {
         if (DriverManager.driver != null) {
-            //Add pages
+            googlePage = new GooglePage(getWebDriver());
         }
     }
 
